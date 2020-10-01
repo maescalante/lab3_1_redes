@@ -18,7 +18,7 @@ server.on("connection", function (sock) {
   sock.on("data", function (data) {
     console.log(data);
     if (data === "Ready") {
-      fs.readdir(testFolder, (err, files) => {
+      fs.readdir(files, (err, files) => {
         files.forEach((file) => {
           console.log(file);
           sock.write(file);
