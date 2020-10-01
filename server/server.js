@@ -21,7 +21,7 @@ server.on("connection", function (sock) {
       fs.readdir(files, (err, files) => {
         files.forEach((file) => {
           console.log(file);
-          sock.write(file);
+          sock.write(file + ", ");
         });
       });
     }
