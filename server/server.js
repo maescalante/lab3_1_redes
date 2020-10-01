@@ -27,7 +27,8 @@ server.on("connection", function (sock) {
         });
       });
     }
-    if (archivos.includes("data") && bool) {
+
+    if (archivos.includes(data) && bool) {
       console.log("OHHHH SI");
     }
 

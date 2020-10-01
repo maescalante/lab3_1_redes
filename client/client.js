@@ -53,8 +53,11 @@ client.on("data", function (data) {
   file = "";
   rl.question("Que archivo ? ", function (name) {
     file = name;
+    console.log("PUTOS TODOS");
+    client.write(file);
+    rl.close();
   });
-  client.write(file);
+
   //  let ostream = fs.createWriteStream("./" + file);
 });
 client.on("close", function () {
