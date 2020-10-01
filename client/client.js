@@ -2,8 +2,8 @@ const net = require("net");
 fs = require("fs");
 let socket;
 const client = new net.Socket();
-const port = 7070;
-const host = "127.0.0.1";
+const port = 3000;
+const host = "54.234.96.150";
 
 client.connect(port, host, function () {
   console.log("Connected");

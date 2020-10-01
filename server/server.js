@@ -16,7 +16,20 @@ server.on("connection", function (sock) {
 
   sock.on("data", function (data) {
     console.log(data);
+    chunk += data.toString(); // Add string on the end of the variable 'chunk'
+    d_index = chunk.indexOf(";"); // Find the delimiter
 
+    // While loop to keep going until no delimiter can be found
+    while (d_index > -1) {
+      try {
+        string = chunk.substring(0, d_index); // Create string up until the delimiter
+        console.log(string);
+      } catch {
+        console.log("error");
+      }
+      chunk = chunk.substring(d_index + 1); // Cuts off the processed chunk
+      d_index = chunk.indexOf(";"); // Find the new delimiter
+    }
     /*
     console.log("DATA " + sock.remoteAddress + ": " + data);
     // Write the data back to all the connected, the client will receive it as data from the server
