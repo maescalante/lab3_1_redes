@@ -9,6 +9,7 @@ client.connect(port, host, function () {
   console.log("Connected");
   client.write("Hello From Client " + client.address().address);
   client.write("Ready");
+
   /*
   socket = host ? net.connect(port, host) : net.connect(3000);
   let ostream = fs.createWriteStream("./");
@@ -44,6 +45,9 @@ client.connect(port, host, function () {
 });
 client.on("data", function (data) {
   console.log("Server Says : " + data);
+  var file = window.prompt("Ingresa el archivo: ");
+  client.write(file);
+  //  let ostream = fs.createWriteStream("./" + file);
 });
 client.on("close", function () {
   console.log("Connection closed");

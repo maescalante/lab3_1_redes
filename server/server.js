@@ -9,22 +9,28 @@ server.listen(port, host, () => {
 });
 
 let sockets = [];
-
+let archivos = [];
 server.on("connection", function (sock) {
   console.log("CONNECTED: " + sock.remoteAddress + ":" + sock.remotePort);
   sock.setEncoding("utf8");
   sockets.push(sock);
-
+  bool = false;
   sock.on("data", function (data) {
     console.log(data);
     if (data === "Ready") {
       fs.readdir(files, (err, files) => {
         files.forEach((file) => {
           console.log(file);
+          archivos.push(file);
           sock.write(file + ", ");
+          bool = true;
         });
       });
     }
+    if (archivos.includes("data") && bool) {
+      console.log("OHHHH SI");
+    }
+
     /*
     console.log("DATA " + sock.remoteAddress + ": " + data);
     // Write the data back to all the connected, the client will receive it as data from the server
