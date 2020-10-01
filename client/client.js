@@ -1,5 +1,10 @@
 const net = require("net");
 fs = require("fs");
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 let socket;
 const client = new net.Socket();
 const port = 3000;
@@ -45,7 +50,10 @@ client.connect(port, host, function () {
 });
 client.on("data", function (data) {
   console.log("Server Says : " + data);
-  var file = window.prompt("Ingresa el archivo: ");
+  file = "";
+  rl.question("Que archivo ? ", function (name) {
+    file = name;
+  });
   client.write(file);
   //  let ostream = fs.createWriteStream("./" + file);
 });
