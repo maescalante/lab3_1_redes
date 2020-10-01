@@ -2,14 +2,14 @@ const net = require("net");
 fs = require("fs");
 let socket;
 const client = new net.Socket();
-const port = 3000;
-const host = "54.234.96.150";
+const port = 7070;
+const host = "127.0.0.1";
 
 client.connect(port, host, function () {
   console.log("Connected");
   client.write("Hello From Client " + client.address().address);
   client.write("Ready");
-
+  /*
   socket = host ? net.connect(port, host) : net.connect(3000);
   let ostream = fs.createWriteStream("./");
   let date = new Date(),
@@ -40,6 +40,7 @@ client.connect(port, host, function () {
     );
     process.exit();
   });
+  */
 });
 client.on("data", function (data) {
   console.log("Server Says : " + data);
