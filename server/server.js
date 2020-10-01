@@ -2,7 +2,7 @@ const net = require("net");
 const port = 7070;
 const host = "127.0.0.1";
 const fs = require("fs");
-
+const files = "./files";
 const server = net.createServer();
 server.listen(port, host, () => {
   console.log("TCP Server is running on port " + port + ".");
@@ -17,7 +17,14 @@ server.on("connection", function (sock) {
 
   sock.on("data", function (data) {
     console.log(data);
-
+    if (data === "Ready") {
+      fs.readdir(testFolder, (err, files) => {
+        files.forEach((file) => {
+          console.log(file);
+          sock.write(file);
+        });
+      });
+    }
     /*
     console.log("DATA " + sock.remoteAddress + ": " + data);
     // Write the data back to all the connected, the client will receive it as data from the server
