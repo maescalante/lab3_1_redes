@@ -63,6 +63,7 @@ server.on("connection", function (sock) {
 
 msj = "Presione e para enviar un archivo";
 while (true) {
+  /*
   const e = prompt(msj + "\n");
   if (e === "e") {
     ans = fs.readdirSync(files);
@@ -83,4 +84,5 @@ while (true) {
       connection.push("test");
     });
   }
+   */
 }
