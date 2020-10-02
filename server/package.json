@@ -5,5 +5,8 @@
   "scripts": {
     "start": "node server.js"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
 }

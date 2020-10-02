@@ -4,12 +4,15 @@ const host = "127.0.0.1";
 const fs = require("fs");
 const files = "./files";
 const server = net.createServer();
+const prompt = require("prompt-sync")();
 server.listen(port, host, () => {
   console.log("TCP Server is running on port " + port + ".");
 });
 
 let sockets = [];
 let archivos = [];
+let ready = [];
+
 server.on("connection", function (sock) {
   console.log("CONNECTED: " + sock.remoteAddress + ":" + sock.remotePort);
   sock.setEncoding("utf8");
@@ -18,14 +21,7 @@ server.on("connection", function (sock) {
   sock.on("data", function (data) {
     console.log(data);
     if (data === "Ready") {
-      fs.readdir(files, (err, files) => {
-        files.forEach((file) => {
-          console.log(file);
-          archivos.push(file);
-          sock.write(file + ", ");
-          bool = true;
-        });
-      });
+      ready.push(sock);
     }
 
     if (archivos.includes(data) && bool) {
@@ -64,3 +60,27 @@ server.on("connection", function (sock) {
     console.log("CLOSED: " + sock.remoteAddress + " " + sock.remotePort);
   });
 });
+
+msj = "Presione e para enviar un archivo";
+while (true) {
+  const e = prompt(msj + "\n");
+  if (e === "e") {
+    ans = fs.readdirSync(files);
+    console.log(
+      "Seleccione uno de los siguientes archivos para enviar a los clientes: "
+    );
+    ans.map((index, archivo) => {
+      console.log(archivo + ". " + index.toString());
+    });
+    msj = "ingrese el número del archivo que se va a enviar:";
+  } else if (e === null) {
+    break;
+  } else {
+    console.log(e);
+    console.log(ready);
+    // Manda un mensaje a todas las conecciones que estén listas
+    ready.map((connection) => {
+      connection.push("test");
+    });
+  }
+}
