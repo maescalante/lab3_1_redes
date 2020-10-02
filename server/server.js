@@ -61,7 +61,7 @@ server.on("connection", function (sock) {
   });
 });
 
-const serverManagment = () => {
+const serverManagment = (msj) => {
   console.log(":3");
   const e = prompt(msj + "\n");
   if (e === "e") {
@@ -73,7 +73,7 @@ const serverManagment = () => {
       console.log(archivo + ". " + index.toString());
     });
     msj = "ingrese el número del archivo que se va a enviar:";
-    serverManagment();
+    serverManagment(msj);
   } else if (e === null) {
   } else {
     console.log(e);
@@ -86,7 +86,9 @@ const serverManagment = () => {
   }
 };
 
-serverManagment();
+msj = "Presione e para enviar un archivo";
+
+serverManagment(msj);
 /*
 msj = "Presione e para enviar un archivo";
 while (true) {
