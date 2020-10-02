@@ -61,6 +61,11 @@ server.on("connection", function (sock) {
   });
 });
 
+const serverManagment = () => {
+  console.log(":3");
+};
+
+serverManagment();
 /*
 msj = "Presione e para enviar un archivo";
 while (true) {
