@@ -1,5 +1,7 @@
 import java.io.*;
 import java.net.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Server {
@@ -19,7 +21,10 @@ public class Server {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             FileWriter fw = new FileWriter("./log.txt", true);
 
-            fw.write("Server is listening on port " + port + "\n");
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+
+            fw.write(dtf.format(now) + " Server is listening on port " + port + "\n");
             System.out.println("Server is listening on port " + port);
 
             fw.close();
@@ -30,7 +35,8 @@ public class Server {
 
                 Socket socket = serverSocket.accept();
                 System.out.println("New client connected, assigned Id: " + currentId);
-                fw.write("New client connected, assigned Id: " + currentId + "\n");
+                now = LocalDateTime.now();
+                fw.write(dtf.format(now) + " New client connected, assigned Id: " + currentId + "\n");
 
                 // Agrega la conexion a la lista de conexiones activas
                 ServerThread thread = new ServerThread(socket, currentId);

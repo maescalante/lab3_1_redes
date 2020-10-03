@@ -19,7 +19,7 @@ public class InputThread extends Thread {
             String input = sc.nextLine();
             String[] campos = input.split(";");
             try {
-                if (campos[0].equals("send")){
+                if (campos[0].equals("send") && campos.length==3){
                     sendFile(Integer.parseInt(campos[1]), campos[2]);
                 }
             } catch (IOException e) {
