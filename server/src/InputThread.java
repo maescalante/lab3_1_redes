@@ -13,7 +13,6 @@ public class InputThread extends Thread {
     }
 
     public void run() {
-
         Scanner sc = new Scanner(System.in);
         while (sc.hasNextLine()) {
             String input = sc.nextLine();
