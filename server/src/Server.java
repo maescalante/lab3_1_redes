@@ -3,22 +3,6 @@ import java.net.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class InputThread {
-    private final Server server;
-
-    public InputThread(Server server) {
-        this.server = server;
-    }
-
-    public void run() {
-        Scanner sc = new Scanner(System.in);
-        while (sc.hasNextLine()) {
-            System.out.println(sc);
-            // blocks for input, but won't block the server's thread
-        }
-    }
-}
-
 public class Server {
 
     int port;
@@ -32,7 +16,7 @@ public class Server {
     }
 
     public void main() {
-        InputThread background = new InputThread(this).start();
+        // InputThread background = new InputThread().start();
         try (ServerSocket serverSocket = new ServerSocket(port)) {
 
             System.out.println("Server is listening on port " + port);
