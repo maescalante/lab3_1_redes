@@ -14,13 +14,13 @@ public class InputThread extends Thread {
 
     public void run() {
 
-        System.out.println("input thread");
         Scanner sc = new Scanner(System.in);
         while (sc.hasNextLine()) {
             String input = sc.nextLine();
+            String[] campos = input.split(";");
             try {
-                if (input.equals("send")){
-                    sendFile();
+                if (campos[0].equals("send")){
+                    sendFile(Integer.parseInt(campos[1]), campos[2]);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -28,8 +28,8 @@ public class InputThread extends Thread {
         }
     }
 
-    public void sendFile() throws IOException {
-        File file = new File("./prueba.txt");
+    public void sendFile(int maxClientes, String archivo) throws IOException {
+        File file = new File(archivo);
         for (ServerThread conexion : conexiones) {
             if (conexion.isAlive()){
                 System.out.println("enviando");

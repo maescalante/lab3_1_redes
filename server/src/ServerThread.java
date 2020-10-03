@@ -12,10 +12,12 @@ public class ServerThread extends Thread {
     private OutputStream output;
     private PrintWriter writer;
     private boolean isReady;
+    private int index;
 
-    public ServerThread(Socket socket) {
+    public ServerThread(Socket socket, int index) {
         this.socket = socket;
         this.isReady = false;
+        this.index = index;
     }
 
     public void run() {
@@ -36,7 +38,6 @@ public class ServerThread extends Thread {
                 String read = new StringBuilder(text).toString();
                 if (read.equals("Ready")){
                     isReady = true;
-                    System.out.println("Yep fucking ready");
                 }
             } while (!text.equals("bye"));
 
@@ -58,7 +59,7 @@ public class ServerThread extends Thread {
 
             // Get the size of the file
             long length = file.length();
-            byte[] bytes = new byte[16 * 1024];
+            byte[] bytes = new byte[8 * 1024];
             InputStream in = new FileInputStream(file);
 
             int count;
