@@ -34,10 +34,9 @@ public class ServerThread extends Thread {
             do {
                 text = reader.readLine();
                 String read = new StringBuilder(text).toString();
-                //System.out.println(read);
                 if (read.equals("Ready")){
                     isReady = true;
-                    writer.println("Yep fucking ready");
+                    System.out.println("Yep fucking ready");
                 }
             } while (!text.equals("bye"));
 
@@ -53,9 +52,6 @@ public class ServerThread extends Thread {
     public void sendFile(File file) throws IOException {
 
         System.out.println(isReady);
-        System.out.println(writer);
-        System.out.println(output);
-
         if (isReady) {
             // Envia el nombre del archivo que se va a mandar
             writer.println("prueba.txt");
