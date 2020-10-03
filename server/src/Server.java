@@ -16,6 +16,10 @@ public class Server {
         sockets = new ArrayList<Socket>();
     }
 
+    public void sendFile() {
+
+    }
+
     public static void main(String[] args) throws IOException {
 
         Server servidor = new Server(); // Create an object of class MyClass (This will call the constructor)
@@ -63,11 +67,13 @@ public class Server {
                         while ((count = in.read(bytes)) > 0) {
                             output.write(bytes, 0, count);
                         }
+                        System.out.println("Finalizo el envio del archivo");
                     }
 
 
                 } while (!text.equals("bye"));
 
+                writer.println("Se cerró la conexión");
                 socket.close();
             }
 
