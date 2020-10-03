@@ -1,6 +1,23 @@
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.Scanner;
+
+class InputThread {
+    private final Server server;
+
+    public InputThread(Server server) {
+        this.server = server;
+    }
+
+    public void run() {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNextLine()) {
+            System.out.println(sc);
+            // blocks for input, but won't block the server's thread
+        }
+    }
+}
 
 public class Server {
 
@@ -14,7 +31,8 @@ public class Server {
         conexiones = new ArrayList<>();
     }
 
-    public void main(){
+    public void main() {
+        InputThread background = new InputThread(this).start();
         try (ServerSocket serverSocket = new ServerSocket(port)) {
 
             System.out.println("Server is listening on port " + port);
@@ -43,8 +61,7 @@ public class Server {
 
     public void sendFile() throws IOException {
         File file = new File("./prueba.txt");
-        for(ServerThread conexion : conexiones)
-        {
+        for (ServerThread conexion : conexiones) {
             System.out.println("enviando");
             conexion.sendFile(file);
         }
