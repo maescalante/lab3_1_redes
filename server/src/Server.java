@@ -26,10 +26,25 @@ public class Server {
 
                 System.out.println("New client connected");
 
+                InputStream input = socket.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+
                 OutputStream output = socket.getOutputStream();
                 PrintWriter writer = new PrintWriter(output, true);
 
-                writer.println(new Date().toString());
+                writer.println("Hello");
+
+                String text;
+
+                do {
+                    text = reader.readLine();
+                    String reverseText = new StringBuilder(text).reverse().toString();
+                    System.out.println(reverseText);
+                    writer.println("Server: " + reverseText);
+
+                } while (!text.equals("bye"));
+
+                socket.close();
             }
 
         } catch (IOException ex) {
