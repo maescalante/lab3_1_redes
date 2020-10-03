@@ -51,18 +51,26 @@ public class ServerThread extends Thread {
     }
 
     public void sendFile(File file) throws IOException {
-        // Envia el nombre del archivo que se va a mandar
-        writer.println("prueba.txt");
 
-        // Get the size of the file
-        long length = file.length();
-        byte[] bytes = new byte[16 * 1024];
-        InputStream in = new FileInputStream(file);
+        System.out.println(isReady);
+        System.out.println(writer);
+        System.out.println(output);
 
-        int count;
-        while ((count = in.read(bytes)) > 0) {
-            output.write(bytes, 0, count);
+        if (isReady) {
+            // Envia el nombre del archivo que se va a mandar
+            writer.println("prueba.txt");
+
+            // Get the size of the file
+            long length = file.length();
+            byte[] bytes = new byte[16 * 1024];
+            InputStream in = new FileInputStream(file);
+
+            int count;
+            while ((count = in.read(bytes)) > 0) {
+                output.write(bytes, 0, count);
+            }
+            System.out.println("Finalizo el envio del archivo");
         }
-        System.out.println("Finalizo el envio del archivo");
+
     }
 }
