@@ -37,11 +37,11 @@ public class ServerThread extends Thread {
                 //System.out.println(read);
                 if (read.equals("Ready")){
                     isReady = true;
-                    writer.println("Confirmado el estado para recibir archivos");
+                    writer.println("Yep fucking ready");
                 }
             } while (!text.equals("bye"));
 
-            writer.println("Se cerró la conexión");
+            writer.println("Closed connection");
             socket.close();
 
         } catch (IOException ex) {
