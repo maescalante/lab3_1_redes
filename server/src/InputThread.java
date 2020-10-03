@@ -1,17 +1,40 @@
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-class InputThread extends Thread {
-    private final Server server;
+public class InputThread extends Thread {
 
-    public InputThread(Server server) {
-        this.server = server;
+    ArrayList<ServerThread> conexiones;
+
+    public InputThread(ArrayList<ServerThread> conexiones) {
+        this.conexiones = conexiones;
     }
 
     public void run() {
+
+        System.out.println("input thread");
         Scanner sc = new Scanner(System.in);
         while (sc.hasNextLine()) {
-            System.out.println(sc);
-            // blocks for input, but won't block the server's thread
+            String input = sc.nextLine();
+            try {
+                if (input.equals("send")){
+                    sendFile();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void sendFile() throws IOException {
+        File file = new File("./prueba.txt");
+        for (ServerThread conexion : conexiones) {
+            if (conexion.isAlive()){
+                System.out.println("enviando");
+                conexion.sendFile(file);
+            }
         }
     }
 }
