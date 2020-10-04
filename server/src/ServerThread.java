@@ -61,8 +61,10 @@ public class ServerThread extends Thread {
 
     public void sendFile(File file) throws IOException, NoSuchAlgorithmException {
 
-        System.out.println(isReady);
+
+
         if (isReady) {
+            System.out.println("Usuario listo");
             // Envia el nombre del archivo que se va a mandar
             MessageDigest shaDigest = MessageDigest.getInstance("SHA-256");
             String shaChecksum = getFileChecksum(shaDigest, file);
