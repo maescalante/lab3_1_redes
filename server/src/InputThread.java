@@ -1,6 +1,7 @@
 
 import java.io.File;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -21,14 +22,14 @@ public class InputThread extends Thread {
                 if (campos[0].equals("send") && campos.length==3){
                     sendFile(Integer.parseInt(campos[1]), campos[2]);
                 }
-            } catch (IOException e) {
+            } catch (IOException | NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public void sendFile(int maxClientes, String archivo) throws IOException {
-        File file = new File(archivo);
+    public void sendFile(int maxClientes, String archivo) throws IOException, NoSuchAlgorithmException {
+        File file = new File("../../../"+archivo);
         for (ServerThread conexion : conexiones) {
             if (conexion.isAlive()){
                 System.out.println("enviando");

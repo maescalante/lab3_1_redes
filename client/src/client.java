@@ -29,7 +29,7 @@ public class client {
                     System.out.println("Server: " + fromServer);
 
 
-                    FileOutputStream outFile = new FileOutputStream("./" + fromServer);
+                    FileOutputStream outFile = new FileOutputStream("../files/" + fromServer);
                     InputStream inFile = sock.getInputStream();
 
                     int count;
@@ -43,7 +43,7 @@ public class client {
                     MessageDigest shaDigest = MessageDigest.getInstance("SHA-256");
 
                     //SHA-1 checksum
-                    File file = new File("./" + fromServer);
+                    File file = new File("../files/" + fromServer);
                     String shaChecksum = getFileChecksum(shaDigest,file );
 
                     if (shaChecksum.equals(checksum)){
