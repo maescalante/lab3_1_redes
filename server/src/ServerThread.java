@@ -75,7 +75,24 @@ public class ServerThread extends Thread {
             MessageDigest shaDigest = MessageDigest.getInstance("SHA-256");
             String shaChecksum = getFileChecksum(shaDigest, file);
             System.out.println(shaChecksum);
+            writer.println("shaChecksum");
+            writer.println("shaChecksum");
+            writer.println("shaChecksum");
+            writer.println("shaChecksum");
             writer.println(shaChecksum);
+            writer.println(shaChecksum);
+            writer.println(shaChecksum);
+            writer.println(shaChecksum);
+            writer.println("te quiero");
+            writer.println(shaChecksum);
+            writer.println(shaChecksum);
+            writer.println("una locura, de verdad");
+            writer.println(shaChecksum);
+            writer.println(shaChecksum);
+
+            writer.println("shaChecksum");
+            writer.println("shaChecksum");
+            writer.println("shaChecksum");
         }
 
     }
