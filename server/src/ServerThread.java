@@ -79,6 +79,8 @@ public class ServerThread extends Thread {
             }
             System.out.println("Finalizo el envio del archivo");
             output.close();
+            String conf=reader.readLine();
+            System.out.println(conf);
 
 
 

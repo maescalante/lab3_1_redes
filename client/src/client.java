@@ -39,21 +39,21 @@ public class client {
                         System.out.println("bytes recibidos:" + count);
                     }
                     System.out.println("Archivo recibido");
-
-
-                    System.out.println(checksum);
+                    out.println("OK");
                     MessageDigest shaDigest = MessageDigest.getInstance("SHA-256");
 
                     //SHA-1 checksum
                     File file = new File("./" + fromServer);
                     String shaChecksum = getFileChecksum(shaDigest,file );
-                    System.out.println(shaChecksum);
+
                     if (shaChecksum.equals(checksum)){
-                        out.println("OK");
+                        System.out.println("Integridad: OK");
+                    }else{
+                        System.out.println("Integridad: F");
                     }
 
                     System.out.println("Cerrando conexión");
-                    
+
                     out.println("bye");
                     outFile.close();
                     inFile.close();
