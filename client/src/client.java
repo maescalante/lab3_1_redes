@@ -24,18 +24,16 @@ public class client {
                     System.out.println("Server: " + fromServer);
                     FileOutputStream outFile = new FileOutputStream("./" + fromServer);
                     InputStream inFile = sock.getInputStream();
-                    byte[] bytes = new byte[16 * 1024];
-
 
                     int count;
-                    byte[] buffer = new byte[8192]; // or 4096, or more
+                    byte[] buffer = new byte[16 * 1024]; // or 4096, or more
                     while ((count = inFile.read(buffer)) > 0)
                     {
                         outFile.write(buffer, 0, count);
                     }
 
                     System.out.println("Cerrando conexión");
-                    out.println("Bye");
+                    out.println("bye");
                     outFile.close();
                     inFile.close();
                 }
