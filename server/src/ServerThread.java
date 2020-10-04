@@ -39,6 +39,7 @@ public class ServerThread extends Thread {
             do {
                 text = reader.readLine();
                 String read = new StringBuilder(text).toString();
+                System.out.println(read);
                 if (read.equals("Ready")) {
                     isReady = true;
                 }
