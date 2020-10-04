@@ -58,10 +58,7 @@ public class ServerThread extends Thread {
         if (isReady) {
             // Envia el nombre del archivo que se va a mandar
             writer.println(file.getName());
-            MessageDigest shaDigest = MessageDigest.getInstance("SHA-256");
-            String shaChecksum = getFileChecksum(shaDigest, file);
-            System.out.println(shaChecksum);
-            writer.println(shaChecksum);
+
             //writer.println(file.length());
 
             // Get the size of the file
@@ -74,7 +71,12 @@ public class ServerThread extends Thread {
                 output.write(bytes, 0, count);
             }
             System.out.println("Finalizo el envio del archivo");
+
             output.close();
+            MessageDigest shaDigest = MessageDigest.getInstance("SHA-256");
+            String shaChecksum = getFileChecksum(shaDigest, file);
+            System.out.println(shaChecksum);
+            writer.println(shaChecksum);
 
 
 
