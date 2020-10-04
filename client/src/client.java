@@ -21,8 +21,13 @@ public class client {
                 out.println("Ready");
                 fromServer = in.readLine();
                 if (fromServer.contains(".")) {
+                    String[] splitted= fromServer.split(",");
+
+                    fromServer=splitted[0];
+                    String checksum=splitted[1];
                     System.out.println("Recibiendo archivo");
                     System.out.println("Server: " + fromServer);
+
 
                     FileOutputStream outFile = new FileOutputStream("./" + fromServer);
                     InputStream inFile = sock.getInputStream();
@@ -34,12 +39,6 @@ public class client {
                         System.out.println("bytes recibidos:" + count);
                     }
                     System.out.println("Archivo recibido");
-                    if (sock.isConnected()){
-                        System.out.println("F");
-                    }
-
-
-                    String  checksum=in.readLine();
 
 
                     System.out.println(checksum);
@@ -49,9 +48,12 @@ public class client {
                     File file = new File("./" + fromServer);
                     String shaChecksum = getFileChecksum(shaDigest,file );
                     System.out.println(shaChecksum);
-
+                    if (shaChecksum.equals(checksum)){
+                        out.println("OK");
+                    }
 
                     System.out.println("Cerrando conexión");
+                    
                     out.println("bye");
                     outFile.close();
                     inFile.close();
