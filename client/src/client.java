@@ -29,21 +29,27 @@ public class client {
                     System.out.println("Server: " + fromServer);
 
 
-                    FileOutputStream outFile = new FileOutputStream("../files/" + fromServer);
+                    FileOutputStream outFile = new FileOutputStream("./" + fromServer);
                     InputStream inFile = sock.getInputStream();
 
                     int count;
                     byte[] buffer = new byte[16 * 1024]; // or 4096, or more
+                    int total= 0;
+                    int i=0;
                     while ((count = inFile.read(buffer)) >0) {
                         outFile.write(buffer, 0, count);
-                        System.out.println("bytes recibidos:" + count);
+                        total+=count;
+                        if (i%1000==0) {
+                            System.out.println("recibido:" + total/(Math.pow(10,6))+"MB");
+                        }
+                        i++;
                     }
                     System.out.println("Archivo recibido");
                     out.println("OK");
                     MessageDigest shaDigest = MessageDigest.getInstance("SHA-256");
 
                     //SHA-1 checksum
-                    File file = new File("../files/" + fromServer);
+                    File file = new File("./" + fromServer);
                     String shaChecksum = getFileChecksum(shaDigest,file );
 
                     if (shaChecksum.equals(checksum)){
