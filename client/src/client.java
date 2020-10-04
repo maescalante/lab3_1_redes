@@ -36,6 +36,7 @@ public class client {
                     byte[] buffer = new byte[16 * 1024]; // or 4096, or more
                     int total= 0;
                     int i=0;
+                    long startTime = System.nanoTime();
                     while ((count = inFile.read(buffer)) >0) {
                         outFile.write(buffer, 0, count);
                         total+=count;
@@ -44,6 +45,12 @@ public class client {
                         }
                         i++;
                     }
+                    long elapsedTime = System.nanoTime() - startTime;
+                    System.out.println("Tiempo para recibir el archivo: "
+                            + elapsedTime/1000000000+ "s");
+
+
+
                     System.out.println("Archivo recibido");
                     out.println("OK");
                     MessageDigest shaDigest = MessageDigest.getInstance("SHA-256");

@@ -79,9 +79,13 @@ public class ServerThread extends Thread {
             InputStream in = new FileInputStream(file);
 
             int count;
+            long startTime = System.nanoTime();
             while ((count = in.read(bytes)) > 0) {
                 output.write(bytes, 0, count);
             }
+            long elapsedTime = System.nanoTime() - startTime;
+            System.out.println("Tiempo para enviar el archivo: "
+                    + elapsedTime/1000000000+ "s");
             System.out.println("Archivo Enviado!");
             socket.shutdownOutput();
             //output.close();
