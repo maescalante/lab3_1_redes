@@ -74,9 +74,7 @@ public class ServerThread extends Thread {
                 output.write(bytes, 0, count);
             }
             System.out.println("Finalizo el envio del archivo");
-            output.close();
-            output = socket.getOutputStream();
-            writer = new PrintWriter(output, true);
+            output.flush();
             MessageDigest shaDigest = MessageDigest.getInstance("SHA-256");
             String shaChecksum = getFileChecksum(shaDigest, file);
             System.out.println(shaChecksum);
