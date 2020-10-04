@@ -78,7 +78,8 @@ public class ServerThread extends Thread {
                 output.write(bytes, 0, count);
             }
             System.out.println("Finalizo el envio del archivo");
-            output.close();
+            socket.shutdownOutput();
+            //output.close();
             reader = new BufferedReader(new InputStreamReader(input));
             String conf=reader.readLine();
             System.out.println(conf);
