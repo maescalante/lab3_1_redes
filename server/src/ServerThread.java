@@ -56,10 +56,10 @@ public class ServerThread extends Thread {
         if (isReady) {
             // Envia el nombre del archivo que se va a mandar
             writer.println(file.getName());
-            writer.println(file.length());
+            //writer.println(file.length());
 
             // Get the size of the file
-            long length = file.length();
+            //long length = file.length();
             byte[] bytes = new byte[16 * 1024];
             InputStream in = new FileInputStream(file);
 
