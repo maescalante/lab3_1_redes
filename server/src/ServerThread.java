@@ -49,7 +49,8 @@ public class ServerThread extends Thread {
 
             } while (!text.equals("bye"));
 
-            writer.println("Conexion cerrada");
+
+            System.out.println("Conexion cerrada");
             socket.close();
 
         } catch (IOException ex) {
