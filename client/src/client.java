@@ -34,7 +34,7 @@ public class client {
 
                     int count;
                     byte[] buffer = new byte[16 * 1024]; // or 4096, or more
-                    while ((count = inFile.read(buffer)) > 0) {
+                    while ((count = inFile.read(buffer)) !=-1) {
                         outFile.write(buffer, 0, count);
                         System.out.println("bytes recibidos:" + count);
                     }
