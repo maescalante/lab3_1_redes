@@ -15,11 +15,12 @@ public class ServerThread extends Thread {
     private PrintWriter writer;
     private boolean isReady;
     private int index;
-
+    private boolean ok;
     public ServerThread(Socket socket, int index) {
         this.socket = socket;
         this.isReady = false;
         this.index = index;
+        this.ok=false;
     }
 
     public void run() {
@@ -41,6 +42,9 @@ public class ServerThread extends Thread {
                 if (read.equals("Ready")){
                     isReady = true;
                 }
+                if (read.equals(("OK"))){
+                    ok=true;
+                }
             } while (!text.equals("bye"));
 
             writer.println("Closed connection");
@@ -58,25 +62,26 @@ public class ServerThread extends Thread {
         if (isReady) {
             // Envia el nombre del archivo que se va a mandar
             writer.println(file.getName());
-
-            //writer.println(file.length());
-
-            // Get the size of the file
-            //long length = file.length();
-            byte[] bytes = new byte[16 * 1024];
-            InputStream in = new FileInputStream(file);
-
-            int count;
-            while ((count = in.read(bytes)) > 0) {
-                output.write(bytes, 0, count);
-            }
-            System.out.println("Finalizo el envio del archivo");
-
-            output.close();
             MessageDigest shaDigest = MessageDigest.getInstance("SHA-256");
             String shaChecksum = getFileChecksum(shaDigest, file);
             System.out.println(shaChecksum);
             writer.println(shaChecksum);
+            if (ok) {
+                //writer.println(file.length());
+
+                // Get the size of the file
+                //long length = file.length();
+                byte[] bytes = new byte[16 * 1024];
+                InputStream in = new FileInputStream(file);
+
+                int count;
+                while ((count = in.read(bytes)) > 0) {
+                    output.write(bytes, 0, count);
+                }
+                System.out.println("Finalizo el envio del archivo");
+                output.close();
+
+            }
 
 
 
