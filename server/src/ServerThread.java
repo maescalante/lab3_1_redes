@@ -68,6 +68,7 @@ public class ServerThread extends Thread {
                 output.write(bytes, 0, count);
             }
             System.out.println("Finalizo el envio del archivo");
+            output.close();
         }
 
     }
