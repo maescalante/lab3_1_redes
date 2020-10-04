@@ -1,5 +1,7 @@
 import java.io.*;
 import java.net.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * This thread is responsible to handle client connection.
@@ -50,7 +52,7 @@ public class ServerThread extends Thread {
         }
     }
 
-    public void sendFile(File file) throws IOException {
+    public void sendFile(File file) throws IOException, NoSuchAlgorithmException {
 
         System.out.println(isReady);
         if (isReady) {
@@ -69,7 +71,51 @@ public class ServerThread extends Thread {
             }
             System.out.println("Finalizo el envio del archivo");
             output.close();
+
+            MessageDigest shaDigest = MessageDigest.getInstance("SHA-256");
+            String shaChecksum = getFileChecksum(shaDigest, file);
+            System.out.println(shaChecksum);
+            writer.println("shaChecksum");
+            writer.println("shaChecksum");
+            writer.println("shaChecksum");
+            writer.println("shaChecksum");
+            writer.println(shaChecksum);
+            writer.println(shaChecksum);
+            writer.println(shaChecksum);
+            writer.println(shaChecksum);
+            writer.println("te quiero");
+            writer.println(shaChecksum);
+            writer.println(shaChecksum);
+            writer.println("una locura, de verdad");
+            writer.println(shaChecksum);
+            writer.println(shaChecksum);
+
+            writer.println("shaChecksum");
+            writer.println("shaChecksum");
+            writer.println("shaChecksum");
         }
 
+    }
+
+    private static String getFileChecksum(MessageDigest digest, File file) throws IOException
+    {
+        FileInputStream fis = new FileInputStream(file);
+        byte[] byteArray = new byte[1024];
+        int bytesCount = 0;
+
+        while ((bytesCount = fis.read(byteArray)) != -1) {
+            digest.update(byteArray, 0, bytesCount);
+        };
+
+        fis.close();
+        byte[] bytes = digest.digest();
+
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i< bytes.length ;i++)
+        {
+            sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+        }
+
+        return sb.toString();
     }
 }
