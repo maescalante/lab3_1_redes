@@ -44,16 +44,16 @@ public class ServerThread extends Thread {
                     isReady = true;
                 }
                 if (read.equals("OK")){
-                    System.out.println("Confirmation recieved");
+                    System.out.println("Confirmacion Recivida");
                 }
 
             } while (!text.equals("bye"));
 
-            writer.println("Closed connection");
+            writer.println("Conexion cerrada");
             socket.close();
 
         } catch (IOException ex) {
-            System.out.println("Server exception: " + ex.getMessage());
+            System.out.println("Excepcion del Servidor: " + ex.getMessage());
             ex.printStackTrace();
         }
     }
@@ -65,7 +65,7 @@ public class ServerThread extends Thread {
             // Envia el nombre del archivo que se va a mandar
             MessageDigest shaDigest = MessageDigest.getInstance("SHA-256");
             String shaChecksum = getFileChecksum(shaDigest, file);
-            System.out.println(shaChecksum);
+            //System.out.println(shaChecksum);
 
             writer.println(file.getName()+","+shaChecksum);
 
@@ -81,10 +81,10 @@ public class ServerThread extends Thread {
             while ((count = in.read(bytes)) > 0) {
                 output.write(bytes, 0, count);
             }
-            System.out.println("Finalizo el envio del archivo");
+            System.out.println("Archivo Enviado!");
             socket.shutdownOutput();
             //output.close();
-         
+
 
 
 
