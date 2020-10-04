@@ -60,7 +60,7 @@ public class ServerThread extends Thread {
 
             // Get the size of the file
             long length = file.length();
-            byte[] bytes = new byte[4 * 1024];
+            byte[] bytes = new byte[16 * 1024];
             InputStream in = new FileInputStream(file);
 
             int count;
