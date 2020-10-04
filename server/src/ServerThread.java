@@ -39,9 +39,12 @@ public class ServerThread extends Thread {
             do {
                 text = reader.readLine();
                 String read = new StringBuilder(text).toString();
-                System.out.println(read);
+
                 if (read.equals("Ready")) {
                     isReady = true;
+                }
+                if (read.equals("OK")){
+                    System.out.println("Confirmation recieved");
                 }
 
             } while (!text.equals("bye"));
@@ -81,10 +84,7 @@ public class ServerThread extends Thread {
             System.out.println("Finalizo el envio del archivo");
             socket.shutdownOutput();
             //output.close();
-            reader = new BufferedReader(new InputStreamReader(input));
-            String conf=reader.readLine();
-            System.out.println(conf);
-
+         
 
 
 
