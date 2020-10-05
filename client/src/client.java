@@ -96,7 +96,7 @@ public class client {
     }
 
     public static void writeLog(String msj) throws IOException {
-        FileWriter fw = new FileWriter("./clientLog.txt", true);
+        FileWriter fw = new FileWriter("./clientLog_" + bufferSize + ".txt", true);
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
