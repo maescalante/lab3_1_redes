@@ -42,7 +42,7 @@ public class InputThread extends Thread {
             }
         }
         int envios = 0;
-        if (clientesActivos >=maxClientes){
+        if (clientesActivos >= maxClientes){
             writeLog(" Sending  file " + archivo + " to " + clientesActivos + " clients");
             for (ServerThread conexion : conexiones) {
                 if (conexion.isAlive() && envios < maxClientes){
@@ -52,6 +52,7 @@ public class InputThread extends Thread {
                 }
             }
         } else {
+            System.out.println("Solo hay " + clientesActivos+ " clientes conectados");
             writeLog(" cant send file not enough clients connected ");
         }
     }

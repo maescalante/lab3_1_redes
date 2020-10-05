@@ -8,3 +8,40 @@
 2020-10-05 10:00:45 File transmission finished, time elapsed: 176s
 2020-10-05 10:00:46 file integrity ok
 2020-10-05 10:00:46 Closing connection to server
+2020-10-05 10:09:59 Server: Hello
+2020-10-05 10:09:59 Client ready to receive file
+2020-10-05 10:12:14 Server: Hello
+2020-10-05 10:12:14 Client ready to receive file
+2020-10-05 10:12:26 Receiving 100.mp3 file from server
+2020-10-05 10:12:26 File transmission, time elapsed: 0s
+2020-10-05 10:12:26 File transmission, bytes send: 0.013032MB
+2020-10-05 10:12:28 File transmission, time elapsed: 2s
+2020-10-05 10:12:28 File transmission, bytes send: 6.575368MB
+2020-10-05 10:12:30 File transmission, time elapsed: 4s
+2020-10-05 10:12:30 File transmission, bytes send: 16.459416MB
+2020-10-05 10:12:32 File transmission, time elapsed: 6s
+2020-10-05 10:12:32 File transmission, bytes send: 22.614864MB
+2020-10-05 10:12:35 File transmission, time elapsed: 8s
+2020-10-05 10:12:35 File transmission, bytes send: 32.49312MB
+2020-10-05 10:12:37 File transmission, time elapsed: 11s
+2020-10-05 10:12:37 File transmission, bytes send: 41.591816MB
+2020-10-05 10:12:39 File transmission, time elapsed: 13s
+2020-10-05 10:12:39 File transmission, bytes send: 50.11528MB
+2020-10-05 10:12:41 File transmission, time elapsed: 15s
+2020-10-05 10:12:41 File transmission, bytes send: 55.79144MB
+2020-10-05 10:12:43 File transmission, time elapsed: 17s
+2020-10-05 10:12:43 File transmission, bytes send: 64.113096MB
+2020-10-05 10:12:45 File transmission, time elapsed: 19s
+2020-10-05 10:12:45 File transmission, bytes send: 71.924064MB
+2020-10-05 10:12:49 File transmission, time elapsed: 22s
+2020-10-05 10:12:49 File transmission, bytes send: 84.149072MB
+2020-10-05 10:12:51 File transmission, time elapsed: 24s
+2020-10-05 10:12:51 File transmission, bytes send: 91.467264MB
+2020-10-05 10:12:52 File transmission, time elapsed: 26s
+2020-10-05 10:12:52 File transmission, bytes send: 96.872648MB
+2020-10-05 10:12:55 File transmission, time elapsed: 28s
+2020-10-05 10:12:55 File transmission, bytes send: 105.866176MB
+2020-10-05 10:12:56 File transmission finished, time elapsed: 29s
+2020-10-05 10:12:56 File transmission, total bytes send: 110.10048MB
+2020-10-05 10:12:56 file integrity ok
+2020-10-05 10:12:56 Closing connection to server
