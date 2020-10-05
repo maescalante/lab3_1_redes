@@ -68,17 +68,17 @@ public class ServerThread extends Thread {
 
     public void sendFile(File file) throws IOException, NoSuchAlgorithmException {
         if (isReady) {
-            System.out.println("Usuario listo");
+            System.out.println("Usuario " + index + "listo");
             // Envia el nombre del archivo que se va a mandar
             MessageDigest shaDigest = MessageDigest.getInstance("SHA-256");
             String shaChecksum = getFileChecksum(shaDigest, file);
 
-            writer.println(file.getName()+","+shaChecksum);
-            writeLog(" File checksum: " + shaChecksum);
+            writer.println("Usuario" + index + file.getName()+","+shaChecksum);
+            writeLog("User " + index + " File checksum: " + shaChecksum);
 
             byte[] bytes = new byte[bufferSize * 1024];
             InputStream in = new FileInputStream(file);
-            writeLog(" Buffer size: " + bytes.toString());
+            writeLog("User " + index +" Buffer size: " + bytes.toString());
 
             int count;
             long startTime = System.nanoTime();
@@ -87,10 +87,10 @@ public class ServerThread extends Thread {
             }
 
             long elapsedTime = System.nanoTime() - startTime;
-            System.out.println("Tiempo para enviar el archivo: "
+            System.out.println("User " + index + ": Tiempo para enviar el archivo: "
                     + elapsedTime/1000000000+ "s");
-            System.out.println("Archivo Enviado!");
-            writeLog(" Elapsed time: " + elapsedTime/1000000000 + " s");
+            System.out.println("User " + index + ": Archivo Enviado!");
+            writeLog("User " + index + " Elapsed time: " + elapsedTime/1000000000 + " s");
             socket.shutdownOutput();
             //output.close();
         }

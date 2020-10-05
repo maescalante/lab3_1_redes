@@ -49,7 +49,7 @@ public class client {
                             System.out.println("recibido:" + total/(Math.pow(10,6))+"MB");
                             elapsedTime = System.nanoTime() - startTime;
                             writeLog(" File transmission, time elapsed: " +  elapsedTime/1000000000 + "s");
-                            writeLog(" File transmission, bytes send: " +  total/(Math.pow(10,6))+"MB");
+                            writeLog(" File transmission, bytes received: " +  total/(Math.pow(10,6))+"MB");
                         }
                         i++;
                     }
@@ -57,7 +57,7 @@ public class client {
                     System.out.println("Tiempo para recibir el archivo: "
                             + elapsedTime/1000000000+ "s");
                     writeLog(" File transmission finished, time elapsed: " +  elapsedTime/1000000000 + "s");
-                    writeLog(" File transmission, total bytes send: " +  total/(Math.pow(10,6))+"MB");
+                    writeLog(" File transmission, total bytes received: " +  total/(Math.pow(10,6))+"MB");
 
                     System.out.println("Archivo recibido");
                     out.println("OK");

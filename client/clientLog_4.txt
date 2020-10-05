@@ -73,3 +73,82 @@
 2020-10-05 12:23:07 File transmission, total bytes send: 110.10048MB
 2020-10-05 12:23:07 file integrity ok
 2020-10-05 12:23:07 Closing connection to server
+2020-10-05 12:35:02 Server: Hello
+2020-10-05 12:35:02 Client ready to receive file
+2020-10-05 12:35:16 Receiving 100.mp3 file from server
+2020-10-05 12:35:16 File transmission, time elapsed: 0s
+2020-10-05 12:35:16 File transmission, bytes send: 0.004096MB
+2020-10-05 12:35:22 File transmission, time elapsed: 5s
+2020-10-05 12:35:22 File transmission, bytes send: 3.52104MB
+2020-10-05 12:35:27 File transmission, time elapsed: 10s
+2020-10-05 12:35:27 File transmission, bytes send: 6.758768MB
+2020-10-05 12:35:32 File transmission, time elapsed: 15s
+2020-10-05 12:35:32 File transmission, bytes send: 10.008328MB
+2020-10-05 12:35:38 File transmission, time elapsed: 21s
+2020-10-05 12:35:38 File transmission, bytes send: 13.3216MB
+2020-10-05 12:35:43 File transmission, time elapsed: 26s
+2020-10-05 12:35:43 File transmission, bytes send: 16.441544MB
+2020-10-05 12:35:47 File transmission, time elapsed: 31s
+2020-10-05 12:35:47 File transmission, bytes send: 19.432864MB
+2020-10-05 12:35:52 File transmission, time elapsed: 35s
+2020-10-05 12:35:52 File transmission, bytes send: 22.644944MB
+2020-10-05 12:35:57 File transmission, time elapsed: 41s
+2020-10-05 12:35:57 File transmission, bytes send: 25.749536MB
+2020-10-05 12:36:05 File transmission, time elapsed: 48s
+2020-10-05 12:36:05 File transmission, bytes send: 28.732664MB
+2020-10-05 12:36:11 File transmission, time elapsed: 54s
+2020-10-05 12:36:11 File transmission, bytes send: 31.743056MB
+2020-10-05 12:36:16 File transmission, time elapsed: 59s
+2020-10-05 12:36:16 File transmission, bytes send: 35.008048MB
+2020-10-05 12:36:22 File transmission, time elapsed: 65s
+2020-10-05 12:36:22 File transmission, bytes send: 38.07032MB
+2020-10-05 12:36:27 File transmission, time elapsed: 70s
+2020-10-05 12:36:27 File transmission, bytes send: 40.902856MB
+2020-10-05 12:36:33 File transmission, time elapsed: 77s
+2020-10-05 12:36:33 File transmission, bytes send: 43.912048MB
+2020-10-05 12:36:38 File transmission, time elapsed: 82s
+2020-10-05 12:36:38 File transmission, bytes send: 46.817936MB
+2020-10-05 12:36:46 File transmission, time elapsed: 89s
+2020-10-05 12:36:46 File transmission, bytes send: 49.799616MB
+2020-10-05 12:36:53 File transmission, time elapsed: 96s
+2020-10-05 12:36:53 File transmission, bytes send: 52.516064MB
+2020-10-05 12:37:02 File transmission, time elapsed: 105s
+2020-10-05 12:37:02 File transmission, bytes send: 55.32204MB
+2020-10-05 12:37:10 File transmission, time elapsed: 113s
+2020-10-05 12:37:10 File transmission, bytes send: 58.19512MB
+2020-10-05 12:37:15 File transmission, time elapsed: 118s
+2020-10-05 12:37:15 File transmission, bytes send: 60.995552MB
+2020-10-05 12:37:21 File transmission, time elapsed: 124s
+2020-10-05 12:37:21 File transmission, bytes send: 64.148304MB
+2020-10-05 12:37:27 File transmission, time elapsed: 130s
+2020-10-05 12:37:27 File transmission, bytes send: 67.42852MB
+2020-10-05 12:37:32 File transmission, time elapsed: 135s
+2020-10-05 12:37:32 File transmission, bytes send: 70.560544MB
+2020-10-05 12:37:36 File transmission, time elapsed: 139s
+2020-10-05 12:37:36 File transmission, bytes send: 73.592904MB
+2020-10-05 12:37:39 File transmission, time elapsed: 143s
+2020-10-05 12:37:39 File transmission, bytes send: 76.678592MB
+2020-10-05 12:37:43 File transmission, time elapsed: 146s
+2020-10-05 12:37:43 File transmission, bytes send: 80.01404MB
+2020-10-05 12:37:46 File transmission, time elapsed: 149s
+2020-10-05 12:37:46 File transmission, bytes send: 83.164184MB
+2020-10-05 12:37:50 File transmission, time elapsed: 153s
+2020-10-05 12:37:50 File transmission, bytes send: 86.629952MB
+2020-10-05 12:37:54 File transmission, time elapsed: 157s
+2020-10-05 12:37:54 File transmission, bytes send: 89.874464MB
+2020-10-05 12:37:57 File transmission, time elapsed: 161s
+2020-10-05 12:37:57 File transmission, bytes send: 93.087576MB
+2020-10-05 12:38:01 File transmission, time elapsed: 165s
+2020-10-05 12:38:01 File transmission, bytes send: 96.53212MB
+2020-10-05 12:38:05 File transmission, time elapsed: 168s
+2020-10-05 12:38:05 File transmission, bytes send: 99.94576MB
+2020-10-05 12:38:09 File transmission, time elapsed: 172s
+2020-10-05 12:38:09 File transmission, bytes send: 103.296928MB
+2020-10-05 12:38:12 File transmission, time elapsed: 175s
+2020-10-05 12:38:12 File transmission, bytes send: 106.557824MB
+2020-10-05 12:38:17 File transmission, time elapsed: 180s
+2020-10-05 12:38:17 File transmission, bytes send: 109.73668MB
+2020-10-05 12:38:17 File transmission finished, time elapsed: 180s
+2020-10-05 12:38:17 File transmission, total bytes send: 110.096136MB
+2020-10-05 12:38:17 file integrity F super ded :c
+2020-10-05 12:38:17 Closing connection to server
