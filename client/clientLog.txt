@@ -1,0 +1,10 @@
+2020-10-05 09:52:59 Server: Hello
+2020-10-05 09:52:59 Client ready to receive file
+2020-10-05 09:53:52 Server: Hello
+2020-10-05 09:53:52 Client ready to receive file
+2020-10-05 09:56:48 Server: Hello
+2020-10-05 09:56:48 Client ready to receive file
+2020-10-05 09:57:49 Receiving 250.txt file from server
+2020-10-05 10:00:45 File transmission finished, time elapsed: 176s
+2020-10-05 10:00:46 file integrity ok
+2020-10-05 10:00:46 Closing connection to server

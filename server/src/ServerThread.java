@@ -2,6 +2,8 @@ import java.io.*;
 import java.net.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * This thread is responsible to handle client connection.
@@ -14,13 +16,14 @@ public class ServerThread extends Thread {
     private PrintWriter writer;
     private boolean isReady;
     private int index;
+    private String logName;
 
 
-    public ServerThread(Socket socket, int index) {
+    public ServerThread(Socket socket, int index, String logName) {
         this.socket = socket;
         this.isReady = false;
         this.index = index;
-
+        this.logName = logName;
     }
 
     public void run() {
@@ -42,6 +45,7 @@ public class ServerThread extends Thread {
 
                 if (read.equals("Ready")) {
                     isReady = true;
+                    writeLog(" client with Id: " + index + " is ready to receive data");
                 }
                 if (read.equals("OK")){
                     System.out.println("Confirmacion Recivida");
@@ -50,6 +54,7 @@ public class ServerThread extends Thread {
             } while (!text.equals("bye"));
 
 
+            writeLog(" client with Id: " + index + " disconnected");
             System.out.println("Conexion cerrada");
             socket.close();
 
@@ -60,44 +65,47 @@ public class ServerThread extends Thread {
     }
 
     public void sendFile(File file) throws IOException, NoSuchAlgorithmException {
-
-
-
         if (isReady) {
             System.out.println("Usuario listo");
             // Envia el nombre del archivo que se va a mandar
             MessageDigest shaDigest = MessageDigest.getInstance("SHA-256");
             String shaChecksum = getFileChecksum(shaDigest, file);
-            //System.out.println(shaChecksum);
 
             writer.println(file.getName()+","+shaChecksum);
+            writeLog(" File checksum: " + shaChecksum);
 
-
-            //writer.println(file.length());
-
-            // Get the size of the file
-            //long length = file.length();
             byte[] bytes = new byte[16 * 1024];
             InputStream in = new FileInputStream(file);
+            writeLog(" Buffer size: " + bytes);
 
             int count;
             long startTime = System.nanoTime();
             while ((count = in.read(bytes)) > 0) {
                 output.write(bytes, 0, count);
             }
+
             long elapsedTime = System.nanoTime() - startTime;
             System.out.println("Tiempo para enviar el archivo: "
                     + elapsedTime/1000000000+ "s");
             System.out.println("Archivo Enviado!");
+            writeLog(" Elapsed time: " + elapsedTime/1000000000 + " s");
             socket.shutdownOutput();
             //output.close();
-
-
-
-
         }
 
     }
+
+    public void writeLog(String msj) throws IOException {
+        FileWriter fw = new FileWriter(logName, true);
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+
+        fw.write(dtf.format(now) + msj + "\n");
+
+        fw.close();
+    }
+
 
     private static String getFileChecksum(MessageDigest digest, File file) throws IOException {
         FileInputStream fis = new FileInputStream(file);
@@ -107,7 +115,6 @@ public class ServerThread extends Thread {
         while ((bytesCount = fis.read(byteArray)) != -1) {
             digest.update(byteArray, 0, bytesCount);
         }
-        ;
 
         fis.close();
         byte[] bytes = digest.digest();

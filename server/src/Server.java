@@ -9,45 +9,36 @@ public class Server {
     int port;
     ArrayList<ServerThread> conexiones;
     int currentId;
+    String logName;
 
     public Server(String logName) {
         port = 5000;
         conexiones = new ArrayList<>();
         currentId = 0;
+        this.logName = logName;
 
     }
 
     public void main() {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
-            FileWriter fw = new FileWriter("./log.txt", true);
 
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            LocalDateTime now = LocalDateTime.now();
-
-            fw.write(dtf.format(now) + " Server is listening on port " + port + "\n");
+            writeLog(" Server is listening on port " + port);
             System.out.println("Server is listening on port " + port);
 
-            fw.close();
-
             while (true) {
-
-                fw = new FileWriter("./log.txt", true);
-
                 Socket socket = serverSocket.accept();
                 System.out.println("New client connected, assigned Id: " + currentId);
-                now = LocalDateTime.now();
-                fw.write(dtf.format(now) + " New client connected, assigned Id: " + currentId + "\n");
+                writeLog(" New client connected, assigned Id: " + currentId);
 
                 // Agrega la conexion a la lista de conexiones activas
-                ServerThread thread = new ServerThread(socket, currentId);
+                ServerThread thread = new ServerThread(socket, currentId, logName);
                 thread.start();
                 conexiones.add(thread);
 
-                InputThread consoleInput = new InputThread(conexiones);
+                InputThread consoleInput = new InputThread(conexiones, logName);
                 consoleInput.start();
 
                 currentId++;
-                fw.close();
             }
 
         } catch (IOException ex) {
@@ -55,6 +46,17 @@ public class Server {
             ex.printStackTrace();
         }
 
+    }
+
+    public void writeLog(String msj) throws IOException {
+        FileWriter fw = new FileWriter(logName, true);
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+
+        fw.write(dtf.format(now) + msj + "\n");
+
+        fw.close();
     }
 
     public static void main(String[] args) {

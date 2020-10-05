@@ -1,6 +1,8 @@
 import java.io.*;
 import java.net.Socket;
 import java.security.MessageDigest;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class client {
@@ -13,11 +15,12 @@ public class client {
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(sock.getInputStream()));
         String fromServer = "";
-        String fromUser = "";
 
         if ((fromServer = in.readLine()) != null) {
             System.out.println("Server: " + fromServer);
             if (fromServer.equals("Hello")) {
+                writeLog(" Server: Hello");
+                writeLog(" Client ready to receive file");
                 out.println("Ready");
                 fromServer = in.readLine();
                 if (fromServer.contains(".")) {
@@ -27,7 +30,7 @@ public class client {
                     String checksum=splitted[1];
                     System.out.println("Recibiendo archivo");
                     System.out.println("Server: " + fromServer);
-
+                    writeLog(" Receiving " + fromServer + " file from server");
 
                     FileOutputStream outFile = new FileOutputStream("./" + fromServer);
                     InputStream inFile = sock.getInputStream();
@@ -37,19 +40,23 @@ public class client {
                     int total= 0;
                     int i=0;
                     long startTime = System.nanoTime();
+                    long elapsedTime;
                     while ((count = inFile.read(buffer)) >0) {
                         outFile.write(buffer, 0, count);
                         total+=count;
                         if (i%1000==0) {
                             System.out.println("recibido:" + total/(Math.pow(10,6))+"MB");
+                            elapsedTime = System.nanoTime() - startTime;
+                            writeLog(" File transmission, time elapsed: " +  elapsedTime/1000000000 + "s");
+                            writeLog(" File transmission, bytes send: " +  total/(Math.pow(10,6))+"MB");
                         }
                         i++;
                     }
-                    long elapsedTime = System.nanoTime() - startTime;
+                    elapsedTime = System.nanoTime() - startTime;
                     System.out.println("Tiempo para recibir el archivo: "
                             + elapsedTime/1000000000+ "s");
-
-
+                    writeLog(" File transmission finished, time elapsed: " +  elapsedTime/1000000000 + "s");
+                    writeLog(" File transmission, total bytes send: " +  total/(Math.pow(10,6))+"MB");
 
                     System.out.println("Archivo recibido");
                     out.println("OK");
@@ -61,11 +68,14 @@ public class client {
 
                     if (shaChecksum.equals(checksum)){
                         System.out.println("Integridad: OK");
+                        writeLog(" file integrity ok");
                     }else{
                         System.out.println("Integridad: F");
+                        writeLog(" file integrity F super ded :c");
                     }
 
                     System.out.println("Cerrando conexión");
+                    writeLog(" Closing connection to server");
 
                     out.println("bye");
                     outFile.close();
@@ -82,6 +92,17 @@ public class client {
             }
 
         }
+    }
+
+    public static void writeLog(String msj) throws IOException {
+        FileWriter fw = new FileWriter("./clientLog.txt", true);
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+
+        fw.write(dtf.format(now) + msj + "\n");
+
+        fw.close();
     }
 
     private static String getFileChecksum(MessageDigest digest, File file) throws IOException

@@ -1,16 +1,21 @@
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class InputThread extends Thread {
 
     ArrayList<ServerThread> conexiones;
+    String logName;
 
-    public InputThread(ArrayList<ServerThread> conexiones) {
+    public InputThread(ArrayList<ServerThread> conexiones, String logName) {
         this.conexiones = conexiones;
+        this.logName = logName;
     }
 
     public void run() {
@@ -30,11 +35,35 @@ public class InputThread extends Thread {
 
     public void sendFile(int maxClientes, String archivo) throws IOException, NoSuchAlgorithmException {
         File file = new File("../../../"+archivo);
+        int clientesActivos = 0;
         for (ServerThread conexion : conexiones) {
             if (conexion.isAlive()){
-                System.out.println("enviando");
-                conexion.sendFile(file);
+                clientesActivos ++;
             }
         }
+        int envios = 0;
+        if (clientesActivos >=maxClientes){
+            writeLog(" Sending  file " + archivo + " to " + clientesActivos + " clients");
+            for (ServerThread conexion : conexiones) {
+                if (conexion.isAlive() && envios < maxClientes){
+                    System.out.println("enviando");
+                    conexion.sendFile(file);
+                    envios++;
+                }
+            }
+        } else {
+            writeLog(" cant send file not enough clients connected ");
+        }
+    }
+
+    public void writeLog(String msj) throws IOException {
+        FileWriter fw = new FileWriter(logName, true);
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+
+        fw.write(dtf.format(now) + msj + "\n");
+
+        fw.close();
     }
 }
