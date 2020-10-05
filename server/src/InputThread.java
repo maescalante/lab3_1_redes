@@ -46,9 +46,20 @@ public class InputThread extends Thread {
             writeLog(" Sending  file " + archivo + " to " + clientesActivos + " clients");
             for (ServerThread conexion : conexiones) {
                 if (conexion.isAlive() && envios < maxClientes){
-                    System.out.println("enviando");
-                    conexion.sendFile(file);
+                    new Thread() {
+                        public void run() {
+                            System.out.println("enviando");
+                            try {
+                                conexion.sendFile(file);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            } catch (NoSuchAlgorithmException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }.start();
                     envios++;
+
                 }
             }
         } else {
