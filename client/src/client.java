@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class client {
     private static String ip = "54.234.96.150";
     private static int port = 5000;
+    private static int bufferSize = 4;
 
     public static void main(String[] args) throws Exception {
         Socket sock = new Socket(ip, port);
@@ -36,7 +37,7 @@ public class client {
                     InputStream inFile = sock.getInputStream();
 
                     int count;
-                    byte[] buffer = new byte[16 * 1024]; // or 4096, or more
+                    byte[] buffer = new byte[bufferSize * 1024]; // or 4096, or more
                     int total= 0;
                     int i=0;
                     long startTime = System.nanoTime();

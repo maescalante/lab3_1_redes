@@ -17,13 +17,15 @@ public class ServerThread extends Thread {
     private boolean isReady;
     private int index;
     private String logName;
+    private int bufferSize;
 
 
-    public ServerThread(Socket socket, int index, String logName) {
+    public ServerThread(Socket socket, int index, String logName, int bufferSize) {
         this.socket = socket;
         this.isReady = false;
         this.index = index;
         this.logName = logName;
+        this.bufferSize = bufferSize;
     }
 
     public void run() {
@@ -74,7 +76,7 @@ public class ServerThread extends Thread {
             writer.println(file.getName()+","+shaChecksum);
             writeLog(" File checksum: " + shaChecksum);
 
-            byte[] bytes = new byte[16 * 1024];
+            byte[] bytes = new byte[bufferSize * 1024];
             InputStream in = new FileInputStream(file);
             writeLog(" Buffer size: " + bytes.toString());
 

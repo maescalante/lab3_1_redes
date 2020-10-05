@@ -10,16 +10,18 @@ public class Server {
     ArrayList<ServerThread> conexiones;
     int currentId;
     String logName;
+    int bufferSize;
 
-    public Server(String logName) {
+    public Server(String logName, String bufferSize) {
         port = 5000;
         conexiones = new ArrayList<>();
         currentId = 0;
-        this.logName = logName;
-
+        this.logName = logName + "_" + bufferSize;
+        this.bufferSize =  Integer.parseInt(bufferSize);
     }
 
     public void main() {
+        System.out.println("Server log: " + logName);
         try (ServerSocket serverSocket = new ServerSocket(port)) {
 
             writeLog(" Server is listening on port " + port);
@@ -31,7 +33,7 @@ public class Server {
                 writeLog(" New client connected, assigned Id: " + currentId);
 
                 // Agrega la conexion a la lista de conexiones activas
-                ServerThread thread = new ServerThread(socket, currentId, logName);
+                ServerThread thread = new ServerThread(socket, currentId, logName, bufferSize);
                 thread.start();
                 conexiones.add(thread);
 
@@ -60,7 +62,13 @@ public class Server {
     }
 
     public static void main(String[] args) {
-        Server servidor = new Server("./log.txt");
+        Server servidor;
+        if (args.length !=3 ){
+            servidor = new Server("./log.txt", "4");
+        } else {
+            servidor = new Server(args[1],args[2]);
+        }
+
         servidor.main();
     }
 
