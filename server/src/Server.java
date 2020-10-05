@@ -16,7 +16,7 @@ public class Server {
         port = 5000;
         conexiones = new ArrayList<>();
         currentId = 0;
-        this.logName = logName + "_" + bufferSize;
+        this.logName = "./" + logName + "_" + bufferSize + ".txt";
         this.bufferSize =  Integer.parseInt(bufferSize);
     }
 
@@ -64,7 +64,7 @@ public class Server {
     public static void main(String[] args) {
         Server servidor;
         if (args.length !=3 ){
-            servidor = new Server("./log.txt", "4");
+            servidor = new Server("log", "4");
         } else {
             servidor = new Server(args[1],args[2]);
         }
