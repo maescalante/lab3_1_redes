@@ -62,11 +62,14 @@ public class Server {
     }
 
     public static void main(String[] args) {
+        System.out.println(args);
+        System.out.println(args.length);
         Server servidor;
-        if (args.length !=3 ){
-            servidor = new Server("log", "4");
+        if (args.length ==1 ){
+            System.out.println(args[0]);
+            servidor = new Server("log",args[0]);
         } else {
-            servidor = new Server(args[1],args[2]);
+            servidor = new Server("log", "4");
         }
 
         servidor.main();
