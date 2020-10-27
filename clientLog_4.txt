@@ -1,0 +1,2 @@
+2020-10-27 13:54:58 Server: Hello
+2020-10-27 13:54:58 Client ready to receive file

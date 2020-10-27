@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class client {
-    private static String ip = "54.234.96.150";
+    private static String ip = "54.237.42.236";
     private static int port = 5000;
     private static int bufferSize = 4;
 
@@ -35,7 +35,7 @@ public class client {
 
                     FileOutputStream outFile = new FileOutputStream("./" + fromServer);
                     InputStream inFile = sock.getInputStream();
-
+                    
                     int count;
                     byte[] buffer = new byte[bufferSize * 1024]; // or 4096, or more
                     int total= 0;
